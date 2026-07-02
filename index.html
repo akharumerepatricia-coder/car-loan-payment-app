@@ -1,0 +1,1229 @@
+<!DOCTYPE html>
+<html lang="en" prefix="og: https://ogp.me/ns#">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+<!-- ── PRIMARY META ── -->
+<title>AutoTrackr Canada | Car Loan Calculator & Payment Tracker for Canadians</title>
+<meta name="description" content="Canada's smartest car loan tracker. Compare RBC, TD, Scotiabank, BMO & CIBC rates, simulate monthly or biweekly payments, and track every dollar you pay. Free to start."/>
+<meta name="keywords" content="car loan calculator Canada, auto loan tracker, Canadian car loan, biweekly car payment, RBC car loan rate, TD auto loan, Scotiabank car loan, BMO auto loan, CIBC car loan, car loan payment tracker, open car loan Canada, car loan interest calculator"/>
+<meta name="author" content="AutoTrackr Canada"/>
+<meta name="robots" content="index, follow"/>
+<meta name="language" content="English"/>
+<meta name="revisit-after" content="7 days"/>
+<meta name="geo.region" content="CA"/>
+<meta name="geo.country" content="Canada"/>
+<link rel="canonical" href="https://autotrackr.ca/"/>
+
+<!-- ── OPEN GRAPH (Facebook, LinkedIn) ── -->
+<meta property="og:type" content="website"/>
+<meta property="og:url" content="https://autotrackr.ca/"/>
+<meta property="og:title" content="AutoTrackr Canada | Car Loan Calculator & Payment Tracker"/>
+<meta property="og:description" content="Compare Big 5 Canadian bank car loan rates. Simulate monthly & biweekly payments. Track every payment with principal vs interest breakdown. Free to start."/>
+<meta property="og:image" content="https://autotrackr.ca/og-image.png"/>
+<meta property="og:image:width" content="1200"/>
+<meta property="og:image:height" content="630"/>
+<meta property="og:site_name" content="AutoTrackr Canada"/>
+<meta property="og:locale" content="en_CA"/>
+
+<!-- ── TWITTER CARD ── -->
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:url" content="https://autotrackr.ca/"/>
+<meta name="twitter:title" content="AutoTrackr Canada | Car Loan Calculator & Payment Tracker"/>
+<meta name="twitter:description" content="Compare Big 5 Canadian bank rates, simulate biweekly payments, and track every dollar. Free car loan tracker built for Canadians."/>
+<meta name="twitter:image" content="https://autotrackr.ca/og-image.png"/>
+
+<!-- ── STRUCTURED DATA (JSON-LD) ── -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "AutoTrackr Canada",
+  "url": "https://autotrackr.ca",
+  "description": "Canadian car loan calculator and payment tracker. Compare Big 5 bank rates, simulate monthly or biweekly payments, and track every payment with principal vs interest breakdown.",
+  "applicationCategory": "FinanceApplication",
+  "operatingSystem": "Web",
+  "offers": [
+    {
+      "@type": "Offer",
+      "name": "Free Plan",
+      "price": "0",
+      "priceCurrency": "CAD"
+    },
+    {
+      "@type": "Offer",
+      "name": "Pro Plan",
+      "price": "4.99",
+      "priceCurrency": "CAD",
+      "billingIncrement": "P1M"
+    }
+  ],
+  "featureList": [
+    "Canadian Big 5 bank rate comparison",
+    "Monthly and biweekly payment calculator",
+    "Extra payment modelling",
+    "Payment tracker with principal vs interest split",
+    "Custom interest rate override",
+    "Open car loan support"
+  ],
+  "screenshot": "https://autotrackr.ca/screenshot.png",
+  "author": {
+    "@type": "Organization",
+    "name": "AutoTrackr Canada",
+    "email": "info@autotrackr.ca",
+    "url": "https://autotrackr.ca"
+  }
+}
+</script>
+
+<!-- ── FAQ SCHEMA ── -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Which Canadian banks does AutoTrackr compare?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "AutoTrackr compares car loan rates from all Big 5 Canadian banks: RBC (6.99%), TD (7.29%), Scotiabank (6.99%), BMO (7.49%), and CIBC (7.20%)."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How does biweekly payment save money on a car loan in Canada?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Biweekly payments (26 per year vs 12 monthly) reduce your outstanding balance more frequently, resulting in less interest charged overall. AutoTrackr shows you the exact dollar savings and months saved when you switch to biweekly."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is AutoTrackr free?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. The full loan simulator, bank rate comparison, biweekly calculator, and extra payment modelling are free forever. The Pro plan ($4.99/month) adds the personal payment tracker, rate alerts, and PDF export, with a 7-day free trial."
+      }
+    }
+  ]
+}
+</script>
+
+<title>AutoTrackr Canada | Car Loan Calculator & Payment Tracker for Canadians</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --navy:   #0A0F1E;
+    --navy2:  #111827;
+    --navy3:  #1a2236;
+    --red:    #E8303A;
+    --red2:   #c4252e;
+    --gold:   #F5C842;
+    --white:  #F0F4FF;
+    --muted:  #e8eaf0;
+    --green:  #10b981;
+    --card:   rgba(255,255,255,0.04);
+    --border: rgba(255,255,255,0.08);
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    background: var(--navy);
+    color: var(--white);
+    overflow-x: hidden;
+  }
+
+  /* ── NOISE OVERLAY ── */
+  body::before {
+    content: "";
+    position: fixed; inset: 0; z-index: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+    pointer-events: none;
+    opacity: 0.4;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 18px 48px;
+    background: rgba(10,15,30,0.85);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border);
+  }
+  .logo {
+    display: flex; align-items: center; gap: 10px;
+    font-size: 20px; font-weight: 900; letter-spacing: -0.5px;
+  }
+  .logo span { color: var(--red); }
+  .logo-icon {
+    width: 34px; height: 34px; border-radius: 9px;
+    background: linear-gradient(135deg, var(--red), #b02028);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px;
+  }
+  .nav-links { display: flex; align-items: center; gap: 32px; }
+  .nav-links a {
+    color: var(--muted); text-decoration: none;
+    font-size: 14px; font-weight: 500;
+    transition: color .2s;
+  }
+  .nav-links a:hover { color: var(--white); }
+  .nav-cta { display: flex; gap: 10px; }
+  .btn-ghost {
+    padding: 9px 20px; border-radius: 10px;
+    border: 1px solid var(--border); background: transparent;
+    color: var(--white); font-size: 14px; font-weight: 600;
+    cursor: pointer; transition: all .2s;
+  }
+  .btn-ghost:hover { border-color: rgba(255,255,255,0.25); background: var(--card); }
+  .btn-red {
+    padding: 9px 20px; border-radius: 10px;
+    border: none; background: var(--red);
+    color: #fff; font-size: 14px; font-weight: 700;
+    cursor: pointer; transition: all .2s;
+  }
+  .btn-red:hover { background: var(--red2); transform: translateY(-1px); }
+
+  /* ── TICKER ── */
+  .ticker-wrap {
+    position: fixed; top: 73px; left: 0; right: 0; z-index: 99;
+    background: rgba(10,15,30,0.9);
+    border-bottom: 1px solid var(--border);
+    overflow: hidden; height: 36px;
+    display: flex; align-items: center;
+  }
+  .ticker-track {
+    display: flex; gap: 0;
+    animation: ticker 28s linear infinite;
+    white-space: nowrap;
+  }
+  .ticker-track:hover { animation-play-state: paused; }
+  @keyframes ticker {
+    0%   { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+  .tick-item {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 0 28px; font-size: 12px; font-weight: 600;
+    font-family: "SF Mono", "Fira Code", monospace;
+    border-right: 1px solid var(--border);
+  }
+  .tick-name { color: #e8eaf0; }
+  .tick-rate { color: var(--white); }
+  .tick-up   { color: var(--red); font-size: 10px; }
+  .tick-down { color: var(--green); font-size: 10px; }
+  .tick-dot  { width: 6px; height: 6px; border-radius: 50%; }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    text-align: center;
+    padding: 140px 24px 80px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero-glow {
+    position: absolute; top: 20%; left: 50%;
+    transform: translate(-50%, -50%);
+    width: 700px; height: 700px;
+    background: radial-gradient(circle, rgba(232,48,58,0.15) 0%, transparent 70%);
+    pointer-events: none;
+    animation: pulse 4s ease-in-out infinite;
+  }
+  @keyframes pulse {
+    0%,100% { opacity: 0.6; transform: translate(-50%,-50%) scale(1); }
+    50%      { opacity: 1;   transform: translate(-50%,-50%) scale(1.08); }
+  }
+  .hero-flag {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: rgba(232,48,58,0.12); border: 1px solid rgba(232,48,58,0.3);
+    padding: 6px 16px; border-radius: 100px;
+    font-size: 12px; font-weight: 700; color: var(--red);
+    letter-spacing: 0.08em; text-transform: uppercase;
+    margin-bottom: 28px;
+    animation: fadeUp .6s ease both;
+  }
+  .hero-h1 {
+    font-size: clamp(40px, 7vw, 82px);
+    font-weight: 900; line-height: 1.04;
+    letter-spacing: -2px; margin-bottom: 24px;
+    animation: fadeUp .6s .1s ease both;
+  }
+  .hero-h1 em {
+    font-style: normal;
+    background: linear-gradient(135deg, var(--red), var(--gold));
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .hero-sub {
+    max-width: 560px; font-size: 18px; line-height: 1.6;
+    color: var(--muted); margin-bottom: 40px;
+    animation: fadeUp .6s .2s ease both;
+  }
+  .hero-actions {
+    display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;
+    margin-bottom: 64px;
+    animation: fadeUp .6s .3s ease both;
+  }
+  .btn-big {
+    padding: 15px 32px; border-radius: 14px;
+    font-size: 16px; font-weight: 800; cursor: pointer;
+    transition: all .2s; border: none;
+  }
+  .btn-big-red {
+    background: linear-gradient(135deg, var(--red), #c4252e);
+    color: #fff; box-shadow: 0 8px 32px rgba(232,48,58,0.35);
+  }
+  .btn-big-red:hover { transform: translateY(-2px); box-shadow: 0 12px 40px rgba(232,48,58,0.5); }
+  .btn-big-outline {
+    background: transparent; color: var(--white);
+    border: 1px solid var(--border);
+  }
+  .btn-big-outline:hover { background: var(--card); border-color: rgba(255,255,255,0.2); }
+
+  .hero-stats {
+    display: flex; gap: 48px; justify-content: center;
+    font-size: 13px; color: var(--muted);
+    animation: fadeUp .6s .4s ease both;
+  }
+  .hero-stat strong { display: block; font-size: 26px; font-weight: 900; color: var(--white); }
+  .hero-stat strong em {
+    font-style: normal;
+    background: linear-gradient(135deg, var(--red), var(--gold));
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* ── DASHBOARD PREVIEW ── */
+  .preview-section {
+    padding: 0 24px 120px; position: relative;
+  }
+  .preview-label {
+    text-align: center; font-size: 11px; font-weight: 700;
+    color: var(--muted); letter-spacing: 0.1em;
+    text-transform: uppercase; margin-bottom: 20px;
+  }
+  .preview-frame {
+    max-width: 900px; margin: 0 auto;
+    background: var(--navy2);
+    border-radius: 20px; border: 1px solid var(--border);
+    box-shadow: 0 40px 120px rgba(0,0,0,0.6), 0 0 0 1px rgba(255,255,255,0.05);
+    overflow: hidden;
+    animation: float 5s ease-in-out infinite;
+  }
+  @keyframes float {
+    0%,100% { transform: translateY(0); }
+    50%      { transform: translateY(-10px); }
+  }
+  .preview-bar {
+    background: var(--navy3); padding: 12px 16px;
+    display: flex; align-items: center; gap: 8px;
+    border-bottom: 1px solid var(--border);
+  }
+  .preview-dot {
+    width: 12px; height: 12px; border-radius: 50%;
+  }
+  .preview-url {
+    flex: 1; background: rgba(255,255,255,0.06);
+    border-radius: 6px; padding: 5px 12px;
+    font-size: 11px; color: var(--muted);
+    font-family: monospace; text-align: center; margin: 0 12px;
+  }
+  .preview-body { padding: 20px; }
+
+  /* mini dashboard UI */
+  .mini-header {
+    display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;
+  }
+  .mini-title { font-size: 14px; font-weight: 800; }
+  .mini-badge {
+    font-size: 10px; background: rgba(232,48,58,0.15); color: var(--red);
+    border: 1px solid rgba(232,48,58,0.3); padding: 3px 10px; border-radius: 20px; font-weight: 700;
+  }
+  .mini-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 10px; margin-bottom: 14px; }
+  .mini-card {
+    background: rgba(255,255,255,0.05); border-radius: 10px; padding: 12px;
+    border: 1px solid var(--border);
+  }
+  .mini-card-label { font-size: 9px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 4px; }
+  .mini-card-val { font-size: 16px; font-weight: 900; }
+  .mini-card-val.green  { color: var(--green); }
+  .mini-card-val.red    { color: #f87171; }
+  .mini-card-val.gold   { color: var(--gold); }
+
+  .mini-bars { display: flex; gap: 3px; align-items: flex-end; height: 48px; margin-bottom: 14px; }
+  .mini-bar {
+    flex: 1; border-radius: 3px 3px 0 0;
+    background: linear-gradient(180deg, rgba(232,48,58,0.6), rgba(232,48,58,0.2));
+    animation: barGrow 1.2s ease both;
+    transform-origin: bottom;
+  }
+  @keyframes barGrow {
+    from { transform: scaleY(0); }
+    to   { transform: scaleY(1); }
+  }
+
+  .mini-row { display: flex; gap: 10px; }
+  .mini-pie-wrap { position: relative; flex-shrink: 0; }
+  .mini-legend { flex: 1; display: flex; flex-direction: column; gap: 6px; justify-content: center; }
+  .mini-legend-item { display: flex; align-items: center; gap: 6px; font-size: 10px; color: var(--muted); }
+  .mini-legend-dot { width: 8px; height: 8px; border-radius: 2px; flex-shrink: 0; }
+
+  .mini-table { width: 100%; border-collapse: collapse; font-size: 10px; }
+  .mini-table th { color: var(--muted); text-align: right; padding: 4px 8px; font-weight: 600; }
+  .mini-table td { text-align: right; padding: 4px 8px; border-top: 1px solid var(--border); }
+  .mini-table tr:nth-child(even) td { background: rgba(255,255,255,0.02); }
+  .green-text { color: var(--green); }
+  .red-text   { color: #f87171; }
+  .gold-text  { color: var(--gold); }
+
+  /* ── FEATURES ── */
+  .features {
+    padding: 100px 24px;
+    background: linear-gradient(180deg, transparent, rgba(232,48,58,0.03), transparent);
+  }
+  .section-eyebrow {
+    text-align: center; font-size: 11px; font-weight: 700;
+    color: var(--red); letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 14px;
+  }
+  .section-h2 {
+    text-align: center; font-size: clamp(28px, 4vw, 48px);
+    font-weight: 900; letter-spacing: -1px; margin-bottom: 16px;
+  }
+  .section-sub {
+    text-align: center; font-size: 16px; color: var(--muted);
+    max-width: 500px; margin: 0 auto 60px; line-height: 1.6;
+  }
+  .features-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 20px; max-width: 960px; margin: 0 auto; }
+  .feat-card {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 18px; padding: 28px;
+    transition: all .3s; position: relative; overflow: hidden;
+  }
+  .feat-card::before {
+    content: ""; position: absolute; inset: 0;
+    background: linear-gradient(135deg, rgba(232,48,58,0.06), transparent);
+    opacity: 0; transition: opacity .3s;
+  }
+  .feat-card:hover { transform: translateY(-4px); border-color: rgba(232,48,58,0.3); }
+  .feat-card:hover::before { opacity: 1; }
+  .feat-icon {
+    width: 44px; height: 44px; border-radius: 12px;
+    background: rgba(232,48,58,0.15); border: 1px solid rgba(232,48,58,0.2);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 20px; margin-bottom: 16px;
+  }
+  .feat-title { font-size: 16px; font-weight: 800; margin-bottom: 8px; }
+  .feat-desc  { font-size: 13px; color: var(--muted); line-height: 1.6; }
+
+  /* ── BANKS ── */
+  .banks-section {
+    padding: 60px 24px;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+  }
+  .banks-label {
+    text-align: center; font-size: 11px; color: var(--muted);
+    font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 24px;
+  }
+  .banks-row {
+    display: flex; justify-content: center; align-items: center;
+    gap: 32px; flex-wrap: wrap;
+  }
+  .bank-chip {
+    display: flex; align-items: center; gap: 8px;
+    padding: 10px 20px; border-radius: 100px;
+    background: var(--card); border: 1px solid var(--border);
+    font-size: 13px; font-weight: 700; white-space: nowrap;
+  }
+  .bank-dot { width: 10px; height: 10px; border-radius: 50%; }
+
+  /* ── HOW IT WORKS ── */
+  .how-section { padding: 100px 24px; }
+  .how-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 32px; max-width: 860px; margin: 0 auto; }
+  .how-step { text-align: center; }
+  .how-num {
+    width: 48px; height: 48px; border-radius: 50%;
+    background: linear-gradient(135deg, var(--red), var(--red2));
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px; font-weight: 900; margin: 0 auto 16px;
+    box-shadow: 0 8px 24px rgba(232,48,58,0.3);
+  }
+  .how-title { font-size: 16px; font-weight: 800; margin-bottom: 8px; }
+  .how-desc  { font-size: 13px; color: var(--muted); line-height: 1.6; }
+  .how-connector {
+    display: none;
+  }
+
+  /* ── PRICING ── */
+  .pricing-section { padding: 100px 24px; }
+  .pricing-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; max-width: 700px; margin: 0 auto; }
+  .price-card {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 20px; padding: 32px; position: relative; overflow: hidden;
+  }
+  .price-card.featured {
+    border-color: var(--red); background: linear-gradient(135deg, rgba(232,48,58,0.08), var(--card));
+  }
+  .price-badge {
+    position: absolute; top: 16px; right: 16px;
+    background: var(--red); color: #fff;
+    font-size: 10px; font-weight: 800; padding: 3px 10px; border-radius: 20px;
+    letter-spacing: 0.06em;
+  }
+  .price-plan  { font-size: 12px; color: var(--muted); font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 12px; }
+  .price-amount { font-size: 42px; font-weight: 900; letter-spacing: -1px; margin-bottom: 4px; }
+  .price-amount span { font-size: 16px; font-weight: 600; color: var(--muted); }
+  .price-desc { font-size: 13px; color: var(--muted); margin-bottom: 24px; }
+  .price-features { list-style: none; display: flex; flex-direction: column; gap: 10px; margin-bottom: 28px; }
+  .price-features li { font-size: 13px; display: flex; align-items: center; gap: 8px; }
+  .price-features li::before { content: "✓"; color: var(--green); font-weight: 800; }
+  .price-features li.muted { color: var(--muted); }
+  .price-features li.muted::before { content: "–"; color: var(--muted); }
+
+  /* ── CTA ── */
+  .cta-section {
+    padding: 120px 24px; text-align: center;
+    background: linear-gradient(180deg, transparent, rgba(232,48,58,0.05), transparent);
+  }
+  .cta-h2 { font-size: clamp(32px, 5vw, 60px); font-weight: 900; letter-spacing: -1.5px; margin-bottom: 16px; }
+  .cta-sub { font-size: 16px; color: var(--muted); margin-bottom: 40px; }
+
+  /* ── FOOTER ── */
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 40px 48px;
+    display: flex; justify-content: space-between; align-items: center;
+    font-size: 13px; color: var(--muted);
+  }
+  footer a { color: var(--muted); text-decoration: none; }
+  footer a:hover { color: var(--white); }
+  .footer-links { display: flex; gap: 24px; }
+
+  /* ── MODAL ── */
+  .modal-overlay {
+    position: fixed; inset: 0; z-index: 200;
+    background: rgba(5,8,18,0.85);
+    backdrop-filter: blur(12px);
+    display: flex; align-items: center; justify-content: center;
+    padding: 24px;
+    opacity: 0; pointer-events: none;
+    transition: opacity .3s;
+  }
+  .modal-overlay.open {
+    opacity: 1; pointer-events: all;
+  }
+  .modal {
+    background: var(--navy2);
+    border: 1px solid var(--border);
+    border-radius: 24px; padding: 40px;
+    width: 100%; max-width: 420px;
+    position: relative;
+    transform: translateY(20px) scale(0.97);
+    transition: transform .3s;
+    box-shadow: 0 40px 100px rgba(0,0,0,0.6);
+  }
+  .modal-overlay.open .modal {
+    transform: translateY(0) scale(1);
+  }
+  .modal-close {
+    position: absolute; top: 16px; right: 16px;
+    background: var(--card); border: 1px solid var(--border);
+    color: var(--muted); width: 32px; height: 32px; border-radius: 8px;
+    font-size: 16px; cursor: pointer; display: flex; align-items: center; justify-content: center;
+  }
+  .modal-close:hover { color: var(--white); }
+  .modal-logo { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; }
+  .modal-logo-icon {
+    width: 32px; height: 32px; border-radius: 8px;
+    background: linear-gradient(135deg, var(--red), #b02028);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 16px;
+  }
+  .modal-logo-name { font-size: 16px; font-weight: 900; }
+  .modal-logo-name span { color: var(--red); }
+  .modal-h2 { font-size: 24px; font-weight: 900; margin-bottom: 6px; }
+  .modal-sub { font-size: 13px; color: var(--muted); margin-bottom: 28px; }
+
+  /* tab toggle */
+  .auth-tabs {
+    display: flex; background: rgba(255,255,255,0.04);
+    border: 1px solid var(--border); border-radius: 12px;
+    padding: 4px; margin-bottom: 28px;
+  }
+  .auth-tab {
+    flex: 1; padding: 9px; border-radius: 9px; border: none;
+    background: none; color: var(--muted);
+    font-size: 14px; font-weight: 600; cursor: pointer;
+    transition: all .2s;
+  }
+  .auth-tab.active {
+    background: var(--red); color: #fff;
+    box-shadow: 0 4px 16px rgba(232,48,58,0.3);
+  }
+
+  .form-group { margin-bottom: 16px; }
+  .form-label {
+    display: block; font-size: 11px; font-weight: 700;
+    color: var(--muted); text-transform: uppercase; letter-spacing: 0.06em;
+    margin-bottom: 6px;
+  }
+  .form-input {
+    width: 100%; padding: 12px 14px; border-radius: 10px;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid var(--border);
+    color: var(--white); font-size: 15px; outline: none;
+    transition: border-color .2s;
+  }
+  .form-input:focus { border-color: rgba(232,48,58,0.5); }
+  .form-input::placeholder { color: #b0b8cc; }
+
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+
+  .btn-submit {
+    width: 100%; padding: 14px; border-radius: 12px;
+    background: linear-gradient(135deg, var(--red), var(--red2));
+    border: none; color: #fff;
+    font-size: 15px; font-weight: 800; cursor: pointer;
+    margin-top: 8px; margin-bottom: 16px;
+    box-shadow: 0 8px 24px rgba(232,48,58,0.3);
+    transition: all .2s;
+  }
+  .btn-submit:hover { transform: translateY(-1px); box-shadow: 0 12px 32px rgba(232,48,58,0.45); }
+  .btn-submit:active { transform: translateY(0); }
+
+  .auth-divider {
+    display: flex; align-items: center; gap: 12px; margin: 16px 0;
+    font-size: 12px; color: var(--muted);
+  }
+  .auth-divider::before, .auth-divider::after {
+    content: ""; flex: 1; height: 1px; background: var(--border);
+  }
+
+  .btn-google {
+    width: 100%; padding: 12px; border-radius: 12px;
+    background: var(--card); border: 1px solid var(--border);
+    color: var(--white); font-size: 14px; font-weight: 600;
+    cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 10px;
+    transition: all .2s;
+  }
+  .btn-google:hover { border-color: rgba(255,255,255,0.2); background: rgba(255,255,255,0.07); }
+
+  .auth-switch {
+    text-align: center; font-size: 13px; color: var(--muted); margin-top: 16px;
+  }
+  .auth-switch a { color: var(--red); text-decoration: none; font-weight: 700; cursor: pointer; }
+  .auth-switch a:hover { text-decoration: underline; }
+
+  .form-forgot { text-align: right; }
+  .form-forgot a { font-size: 12px; color: var(--muted); text-decoration: none; }
+  .form-forgot a:hover { color: var(--red); }
+
+  .success-msg {
+    text-align: center; padding: 20px 0;
+    display: none;
+  }
+  .success-icon { font-size: 48px; margin-bottom: 12px; }
+  .success-h3 { font-size: 20px; font-weight: 800; margin-bottom: 8px; }
+  .success-p { font-size: 13px; color: var(--muted); }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  .reveal {
+    opacity: 0; transform: translateY(30px);
+    transition: opacity .6s ease, transform .6s ease;
+  }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 768px) {
+    nav { padding: 16px 20px; }
+    .nav-links { display: none; }
+    .features-grid, .how-grid, .pricing-grid { grid-template-columns: 1fr; }
+    .mini-grid { grid-template-columns: repeat(2,1fr); }
+    footer { flex-direction: column; gap: 16px; text-align: center; }
+    .hero-stats { gap: 24px; flex-wrap: wrap; justify-content: center; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="logo">
+    <div class="logo-icon">🚗</div>
+    Auto<span>Trackr</span>
+  </div>
+  <div class="nav-links">
+    <a href="#features">Features</a>
+    <a href="#how">How it works</a>
+    <a href="#pricing">Pricing</a>
+  </div>
+  <div class="nav-cta">
+    <button class="btn-ghost" onclick="openModal('signin')">Sign in</button>
+    <button class="btn-red"   onclick="openModal('signup')">Get started free</button>
+  </div>
+</nav>
+
+<!-- LIVE RATE TICKER -->
+<div class="ticker-wrap">
+  <div class="ticker-track" id="ticker"></div>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-glow"></div>
+  <div class="hero-flag">🇨🇦 Built for Canadian borrowers</div>
+  <h1 class="hero-h1">Stop guessing.<br/><em>Know your loan.</em></h1>
+  <p class="hero-sub">Compare Big 5 bank rates, simulate monthly or biweekly payments, and track every dollar you've paid — all in one place.</p>
+  <div class="hero-actions">
+    <button class="btn-big btn-big-red" onclick="openModal('signup')">Start tracking free →</button>
+    <button class="btn-big btn-big-outline" onclick="openModal('signin')">Sign in to dashboard</button>
+  </div>
+  <div class="hero-stats">
+    <div class="hero-stat"><strong><em>5</em></strong>Major banks compared</div>
+    <div class="hero-stat"><strong><em>$0</em></strong>To get started</div>
+    <div class="hero-stat"><strong><em>26×</em></strong>Biweekly tracking</div>
+    <div class="hero-stat"><strong><em>100%</em></strong>Private & local</div>
+  </div>
+</section>
+
+<!-- DASHBOARD PREVIEW -->
+<section class="preview-section reveal">
+  <p class="preview-label">Live dashboard preview</p>
+  <div class="preview-frame">
+    <div class="preview-bar">
+      <div class="preview-dot" style="background:#ff5f57"></div>
+      <div class="preview-dot" style="background:#ffbd2e"></div>
+      <div class="preview-dot" style="background:#28ca41"></div>
+      <div class="preview-url">autotrackr.ca/dashboard</div>
+    </div>
+    <div class="preview-body">
+      <div class="mini-header">
+        <div class="mini-title">🚗 Car Loan Tracker · RBC @ 6.99% APR</div>
+        <div class="mini-badge">🇨🇦 CAD</div>
+      </div>
+      <div class="mini-grid">
+        <div class="mini-card">
+          <div class="mini-card-label">Monthly Payment</div>
+          <div class="mini-card-val">$331.47</div>
+        </div>
+        <div class="mini-card">
+          <div class="mini-card-label">Balance Left</div>
+          <div class="mini-card-val gold">$11,204.33</div>
+        </div>
+        <div class="mini-card">
+          <div class="mini-card-label">Total Interest</div>
+          <div class="mini-card-val red">$1,910.49</div>
+        </div>
+        <div class="mini-card">
+          <div class="mini-card-label">Principal Paid</div>
+          <div class="mini-card-val green">$2,795.67</div>
+        </div>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+        <div>
+          <div style="font-size:10px;color:#e8eaf0;margin-bottom:6px;font-weight:600;">PAYMENT HISTORY</div>
+          <div class="mini-bars">
+            <div class="mini-bar" style="height:30%;animation-delay:.0s"></div>
+            <div class="mini-bar" style="height:40%;animation-delay:.05s"></div>
+            <div class="mini-bar" style="height:35%;animation-delay:.1s"></div>
+            <div class="mini-bar" style="height:55%;animation-delay:.15s"></div>
+            <div class="mini-bar" style="height:50%;animation-delay:.2s"></div>
+            <div class="mini-bar" style="height:65%;animation-delay:.25s"></div>
+            <div class="mini-bar" style="height:60%;animation-delay:.3s"></div>
+            <div class="mini-bar" style="height:80%;animation-delay:.35s;background:linear-gradient(180deg,rgba(16,185,129,0.8),rgba(16,185,129,0.2))"></div>
+          </div>
+        </div>
+        <div>
+          <div style="font-size:10px;color:#e8eaf0;margin-bottom:6px;font-weight:600;">BREAKDOWN</div>
+          <div class="mini-row">
+            <div class="mini-pie-wrap">
+              <svg width="70" height="70" viewBox="0 0 70 70">
+                <circle cx="35" cy="35" r="28" fill="none" stroke="#1f2937" stroke-width="14"/>
+                <circle cx="35" cy="35" r="28" fill="none" stroke="#6ee7b7" stroke-width="14"
+                  stroke-dasharray="70 106" stroke-dashoffset="0" transform="rotate(-90 35 35)"/>
+                <circle cx="35" cy="35" r="28" fill="none" stroke="#f87171" stroke-width="14"
+                  stroke-dasharray="22 154" stroke-dashoffset="-70" transform="rotate(-90 35 35)"/>
+              </svg>
+            </div>
+            <div class="mini-legend">
+              <div class="mini-legend-item"><div class="mini-legend-dot" style="background:#6ee7b7"></div>Principal $2,796</div>
+              <div class="mini-legend-item"><div class="mini-legend-dot" style="background:#f87171"></div>Interest $706</div>
+              <div class="mini-legend-item"><div class="mini-legend-dot" style="background:#1f2937;border:1px solid #374151"></div>Remaining $11,204</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BANKS -->
+<section class="banks-section reveal">
+  <p class="banks-label">Live rates from Canada's Big 5 banks</p>
+  <div class="banks-row">
+    <div class="bank-chip"><div class="bank-dot" style="background:#003A70"></div>RBC · 6.99%</div>
+    <div class="bank-chip"><div class="bank-dot" style="background:#54B848"></div>TD · 7.29%</div>
+    <div class="bank-chip"><div class="bank-dot" style="background:#C8102E"></div>Scotiabank · 6.99%</div>
+    <div class="bank-chip"><div class="bank-dot" style="background:#0079C1"></div>BMO · 7.49%</div>
+    <div class="bank-chip"><div class="bank-dot" style="background:#C41F3A"></div>CIBC · 7.20%</div>
+  </div>
+</section>
+
+<!-- FEATURES -->
+<section class="features" id="features">
+  <p class="section-eyebrow">Everything you need</p>
+  <h2 class="section-h2">Built for real Canadian borrowers</h2>
+  <p class="section-sub">Not a generic calculator. A full toolkit for understanding, simulating, and tracking your car loan.</p>
+  <div class="features-grid">
+    <div class="feat-card reveal">
+      <div class="feat-icon">🏦</div>
+      <div class="feat-title">Big 5 Rate Comparison</div>
+      <div class="feat-desc">Compare RBC, TD, Scotiabank, BMO, and CIBC side by side. See exactly how much each bank costs you in total interest.</div>
+    </div>
+    <div class="feat-card reveal">
+      <div class="feat-icon">⚡</div>
+      <div class="feat-title">Biweekly vs Monthly</div>
+      <div class="feat-desc">Switch between monthly and biweekly payment modes. See how 26 payments a year shaves months off your loan and saves hundreds in interest.</div>
+    </div>
+    <div class="feat-card reveal">
+      <div class="feat-icon">📊</div>
+      <div class="feat-title">Live Payment Tracker</div>
+      <div class="feat-desc">Log every payment you make. See the exact split between principal and interest, your remaining balance, and a donut chart of your progress.</div>
+    </div>
+    <div class="feat-card reveal">
+      <div class="feat-icon">🎛️</div>
+      <div class="feat-title">Custom Rate Override</div>
+      <div class="feat-desc">Got a rate from a credit union or dealer? Enter any APR and compare it against the Big 5 instantly.</div>
+    </div>
+    <div class="feat-card reveal">
+      <div class="feat-icon">💰</div>
+      <div class="feat-title">Extra Payment Modelling</div>
+      <div class="feat-desc">Add a recurring extra payment and see exactly how many months you shave off and how much interest you save over the life of the loan.</div>
+    </div>
+    <div class="feat-card reveal">
+      <div class="feat-icon">🔓</div>
+      <div class="feat-title">Open Loan Friendly</div>
+      <div class="feat-desc">Canadian open loans allow penalty-free extra payments. AutoTrackr is built around that flexibility — pay more when you can, track the impact instantly.</div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="how-section" id="how">
+  <p class="section-eyebrow">Simple by design</p>
+  <h2 class="section-h2">Up and running in 2 minutes</h2>
+  <p class="section-sub">No bank connection required. No sensitive data leaves your device.</p>
+  <div class="how-grid reveal">
+    <div class="how-step">
+      <div class="how-num">1</div>
+      <div class="how-title">Enter your loan details</div>
+      <div class="how-desc">Vehicle price, down payment, and loan term. The simulator calculates your exact payment instantly.</div>
+    </div>
+    <div class="how-step">
+      <div class="how-num">2</div>
+      <div class="how-title">Compare & simulate</div>
+      <div class="how-desc">See all Big 5 bank rates side by side. Toggle biweekly payments. Add extra payments and watch your payoff date move.</div>
+    </div>
+    <div class="how-step">
+      <div class="how-num">3</div>
+      <div class="how-title">Track every payment</div>
+      <div class="how-desc">Log your real payments each month or biweekly. See principal vs interest on every payment. Watch your balance drop in real time.</div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section class="pricing-section" id="pricing">
+  <p class="section-eyebrow">Simple pricing</p>
+  <h2 class="section-h2">Free to start, forever</h2>
+  <p class="section-sub">The core tools are free. Upgrade for advanced tracking and alerts.</p>
+  <div class="pricing-grid reveal">
+    <div class="price-card">
+      <div class="price-plan">Free</div>
+      <div class="price-amount">$0<span>/mo</span></div>
+      <div class="price-desc">Everything you need to simulate and compare your loan.</div>
+      <ul class="price-features">
+        <li>Full loan simulator</li>
+        <li>Big 5 bank comparison</li>
+        <li>Biweekly & monthly modes</li>
+        <li>Extra payment modelling</li>
+        <li>Custom interest rate</li>
+        <li class="muted">Payment tracker</li>
+        <li class="muted">Rate drop alerts</li>
+        <li class="muted">Export to PDF</li>
+      </ul>
+      <button class="btn-submit" onclick="openModal('signup')">Get started free</button>
+    </div>
+    <div class="price-card featured">
+      <div class="price-badge">POPULAR</div>
+      <div class="price-plan">Pro</div>
+      <div class="price-amount">$4.99<span>/mo</span></div>
+      <div class="price-desc">For active borrowers who want full tracking and insights.</div>
+      <ul class="price-features">
+        <li>Everything in Free</li>
+        <li>Payment tracker</li>
+        <li>Principal vs interest split</li>
+        <li>Running balance history</li>
+        <li>Rate drop alerts</li>
+        <li>Export to PDF</li>
+        <li>Priority support</li>
+        <li>Early access to new features</li>
+      </ul>
+      <button class="btn-submit" onclick="openModal('signup')">Start 7-day free trial</button>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section reveal">
+  <h2 class="cta-h2">Your bank isn't going to<br/>explain this to you.</h2>
+  <p class="cta-sub">Start tracking your car loan the way it should be tracked — with full transparency on every dollar.</p>
+  <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">
+    <button class="btn-big btn-big-red" onclick="openModal('signup')">Create free account →</button>
+    <button class="btn-big btn-big-outline" onclick="openModal('signin')">Sign in</button>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer style="display:block;padding:48px 48px 32px;">
+  <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:32px;margin-bottom:32px;">
+    <!-- Brand -->
+    <div style="max-width:280px;">
+      <div class="logo" style="font-size:16px;margin-bottom:10px;">
+        <div class="logo-icon" style="width:28px;height:28px;font-size:14px;">🚗</div>
+        Auto<span>Trackr</span>
+      </div>
+      <p style="font-size:12px;color:#e8eaf0;line-height:1.7;margin-bottom:12px;">Canada's smartest car loan simulator and payment tracker. Built for Canadian borrowers, by Canadians.</p>
+      <a href="mailto:info@autotrackr.ca" style="display:inline-flex;align-items:center;gap:6px;font-size:13px;color:#E8303A;text-decoration:none;font-weight:700;">
+        ✉ info@autotrackr.ca
+      </a>
+    </div>
+    <!-- Links -->
+    <div style="display:flex;gap:48px;flex-wrap:wrap;">
+      <div>
+        <div style="font-size:11px;font-weight:700;color:#e8eaf0;text-transform:uppercase;letter-spacing:0.08em;margin-bottom:12px;">Product</div>
+        <div style="display:flex;flex-direction:column;gap:9px;">
+          <a href="#features" style="font-size:13px;color:#e8eaf0;text-decoration:none;">Features</a>
+          <a href="#pricing"  style="font-size:13px;color:#e8eaf0;text-decoration:none;">Pricing</a>
+          <a href="#how"      style="font-size:13px;color:#e8eaf0;text-decoration:none;">How it works</a>
+        </div>
+      </div>
+      <div>
+        <div style="font-size:11px;font-weight:700;color:#e8eaf0;text-transform:uppercase;letter-spacing:0.08em;margin-bottom:12px;">Company</div>
+        <div style="display:flex;flex-direction:column;gap:9px;">
+          <a href="#" style="font-size:13px;color:#e8eaf0;text-decoration:none;">Privacy Policy</a>
+          <a href="#" style="font-size:13px;color:#e8eaf0;text-decoration:none;">Terms of Service</a>
+          <a href="mailto:info@autotrackr.ca" style="font-size:13px;color:#e8eaf0;text-decoration:none;">Contact Us</a>
+        </div>
+      </div>
+      <div>
+        <div style="font-size:11px;font-weight:700;color:#e8eaf0;text-transform:uppercase;letter-spacing:0.08em;margin-bottom:12px;">Banks Covered</div>
+        <div style="display:flex;flex-direction:column;gap:6px;">
+          <span style="font-size:12px;color:#e8eaf0;">🔵 RBC · 6.99% APR</span>
+          <span style="font-size:12px;color:#e8eaf0;">🟢 TD · 7.29% APR</span>
+          <span style="font-size:12px;color:#e8eaf0;">🔴 Scotiabank · 6.99% APR</span>
+          <span style="font-size:12px;color:#e8eaf0;">🔵 BMO · 7.49% APR</span>
+          <span style="font-size:12px;color:#e8eaf0;">🔴 CIBC · 7.20% APR</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Bottom bar -->
+  <div style="border-top:1px solid rgba(255,255,255,0.08);padding-top:20px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;">
+    <div style="font-size:12px;color:#e8eaf0;">© 2026 AutoTrackr Canada. All rights reserved.</div>
+    <div style="font-size:11px;color:#b0b8cc;">Rates shown are indicative and subject to credit approval. AutoTrackr Canada is not affiliated with any Canadian bank.</div>
+  </div>
+</footer>
+
+<!-- AUTH MODAL -->
+<div class="modal-overlay" id="modal" onclick="handleOverlayClick(event)">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal()">✕</button>
+    <div class="modal-logo">
+      <div class="modal-logo-icon">🚗</div>
+      <div class="modal-logo-name">Auto<span>Trackr</span></div>
+    </div>
+
+    <div class="auth-tabs">
+      <button class="auth-tab active" id="tab-signin" onclick="switchTab('signin')">Sign in</button>
+      <button class="auth-tab"        id="tab-signup" onclick="switchTab('signup')">Sign up</button>
+    </div>
+
+    <!-- SIGN IN FORM -->
+    <div id="form-signin">
+      <div class="modal-h2">Welcome back</div>
+      <div class="modal-sub">Sign in to your AutoTrackr dashboard.</div>
+      <div class="form-group">
+        <label class="form-label">Email address</label>
+        <input class="form-input" type="email" placeholder="you@example.com" id="signin-email" autocomplete="email"/>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Password</label>
+        <input class="form-input" type="password" placeholder="••••••••" id="signin-pass" autocomplete="current-password"/>
+        <div class="form-forgot" style="margin-top:6px;"><a href="#">Forgot password?</a></div>
+      </div>
+      <button class="btn-submit" onclick="handleSignIn()">Sign in to dashboard →</button>
+      <div class="auth-switch" style="margin-top:16px;">Don't have an account? <a onclick="switchTab('signup')">Sign up free</a></div>
+    </div>
+
+    <!-- SIGN UP FORM -->
+    <div id="form-signup" style="display:none;">
+      <div class="modal-h2">Create your account</div>
+      <div class="modal-sub">Free to start. No credit card required.</div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label">First name</label>
+          <input class="form-input" type="text" placeholder="Jane" id="signup-first" autocomplete="given-name"/>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Last name</label>
+          <input class="form-input" type="text" placeholder="Doe" id="signup-last" autocomplete="family-name"/>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">Email address</label>
+        <input class="form-input" type="email" placeholder="you@example.com" id="signup-email" autocomplete="email"/>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">Phone number</label>
+        <div style="position:relative;">
+          <span style="position:absolute;left:13px;top:50%;transform:translateY(-50%);font-size:14px;color:#e8eaf0;font-weight:600;pointer-events:none;">🇨🇦 +1</span>
+          <input class="form-input" type="tel" placeholder="(416) 555-0100" id="signup-phone"
+            autocomplete="tel" style="padding-left:64px;"
+            oninput="formatPhone(this)"/>
+        </div>
+        <div style="font-size:11px;color:#e8eaf0;margin-top:5px;">Used only for account security. We never share or sell your number.</div>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">Password</label>
+        <div style="position:relative;">
+          <input class="form-input" type="password" placeholder="Min. 8 characters" id="signup-pass"
+            autocomplete="new-password" oninput="checkPassword(this)"/>
+          <button type="button" onclick="togglePassword('signup-pass', this)"
+            style="position:absolute;right:12px;top:50%;transform:translateY(-50%);background:none;border:none;color:#e8eaf0;cursor:pointer;font-size:16px;">👁</button>
+        </div>
+        <!-- Password strength bar -->
+        <div style="margin-top:8px;height:4px;background:rgba(255,255,255,0.08);border-radius:2px;overflow:hidden;">
+          <div id="strength-bar" style="height:100%;width:0%;border-radius:2px;transition:all .3s;"></div>
+        </div>
+        <div id="strength-label" style="font-size:10px;color:#e8eaf0;margin-top:4px;"></div>
+      </div>
+
+      <!-- Terms checkbox -->
+      <div style="display:flex;align-items:flex-start;gap:10px;margin-bottom:16px;">
+        <input type="checkbox" id="signup-terms" style="margin-top:3px;accent-color:#E8303A;width:15px;height:15px;flex-shrink:0;cursor:pointer;"/>
+        <label for="signup-terms" style="font-size:12px;color:#e8eaf0;line-height:1.5;cursor:pointer;">
+          I agree to AutoTrackr's <a href="#" style="color:#E8303A;text-decoration:none;font-weight:700;">Terms of Service</a> and <a href="#" style="color:#E8303A;text-decoration:none;font-weight:700;">Privacy Policy</a>
+        </label>
+      </div>
+
+      <button class="btn-submit" onclick="handleSignUp()">Create free account →</button>
+      <div class="auth-switch" style="margin-top:16px;">Already have an account? <a onclick="switchTab('signin')">Sign in</a></div>
+    </div>
+
+    <!-- SUCCESS STATE -->
+    <div class="success-msg" id="form-success">
+      <div class="success-icon">🎉</div>
+      <div class="success-h3">Account created!</div>
+      <p class="success-p" id="success-name-msg">Welcome to AutoTrackr.</p>
+      <p class="success-p" style="margin-top:8px;font-size:12px;">Redirecting you to your dashboard…</p>
+    </div>
+  </div>
+</div>
+
+<script>
+// ── TICKER ────────────────────────────────────────────
+const rates = [
+  { name:"RBC",        rate:"6.99%", color:"#003A70", change:"up",   delta:"+0.25%" },
+  { name:"TD",         rate:"7.29%", color:"#54B848", change:"up",   delta:"+0.50%" },
+  { name:"Scotiabank", rate:"6.99%", color:"#C8102E", change:"same", delta:"0.00%"  },
+  { name:"BMO",        rate:"7.49%", color:"#0079C1", change:"up",   delta:"+0.25%" },
+  { name:"CIBC",       rate:"7.20%", color:"#C41F3A", change:"down", delta:"-0.05%" },
+  { name:"BoC Rate",   rate:"4.75%", color:"#F5C842", change:"down", delta:"-0.25%" },
+  { name:"Prime Rate", rate:"6.95%", color:"#10b981", change:"down", delta:"-0.25%" },
+];
+function buildTicker() {
+  const track = document.getElementById("ticker");
+  const items = [...rates, ...rates];
+  track.innerHTML = items.map(r => `
+    <div class="tick-item">
+      <div class="tick-dot" style="background:${r.color}"></div>
+      <span class="tick-name">${r.name}</span>
+      <span class="tick-rate">${r.rate}</span>
+      <span class="${r.change === 'up' ? 'tick-up' : r.change === 'down' ? 'tick-down' : ''}">${r.delta}</span>
+    </div>
+  `).join("");
+}
+buildTicker();
+
+// ── MODAL ─────────────────────────────────────────────
+let currentTab = "signin";
+function openModal(tab) {
+  document.getElementById("modal").classList.add("open");
+  document.body.style.overflow = "hidden";
+  switchTab(tab);
+}
+function closeModal() {
+  document.getElementById("modal").classList.remove("open");
+  document.body.style.overflow = "";
+}
+function handleOverlayClick(e) {
+  if (e.target === document.getElementById("modal")) closeModal();
+}
+function switchTab(tab) {
+  currentTab = tab;
+  document.getElementById("form-signin").style.display  = tab === "signin"  ? "block" : "none";
+  document.getElementById("form-signup").style.display  = tab === "signup"  ? "block" : "none";
+  document.getElementById("form-success").style.display = "none";
+  document.getElementById("tab-signin").classList.toggle("active", tab === "signin");
+  document.getElementById("tab-signup").classList.toggle("active", tab === "signup");
+}
+function showSuccess(name) {
+  document.getElementById("form-signin").style.display  = "none";
+  document.getElementById("form-signup").style.display  = "none";
+  document.getElementById("form-success").style.display = "block";
+  if (name) document.getElementById("success-name-msg").textContent = "Welcome, " + name + "! Your account is ready.";
+  setTimeout(() => {
+    closeModal();
+    // In production: window.location.href = "/dashboard"
+    alert("🚗 Welcome to AutoTrackr! (Connect your Railway backend to redirect here automatically.)");
+  }, 2200);
+}
+
+// ── SIGN IN ───────────────────────────────────────────
+function handleSignIn() {
+  const email = document.getElementById("signin-email").value.trim();
+  const pass  = document.getElementById("signin-pass").value;
+  if (!email || !pass) { shakeModal(); return; }
+  if (!isValidEmail(email)) { showFieldError("signin-email", "Please enter a valid email address."); return; }
+  showSuccess();
+}
+
+// ── SIGN UP ───────────────────────────────────────────
+function handleSignUp() {
+  const first = document.getElementById("signup-first").value.trim();
+  const last  = document.getElementById("signup-last").value.trim();
+  const email = document.getElementById("signup-email").value.trim();
+  const phone = document.getElementById("signup-phone").value.trim();
+  const pass  = document.getElementById("signup-pass").value;
+  const terms = document.getElementById("signup-terms").checked;
+
+  if (!first)              { showFieldError("signup-first", "Please enter your first name."); return; }
+  if (!last)               { showFieldError("signup-last",  "Please enter your last name.");  return; }
+  if (!isValidEmail(email)){ showFieldError("signup-email", "Please enter a valid email address."); return; }
+  if (!isValidPhone(phone)){ showFieldError("signup-phone", "Please enter a valid Canadian phone number."); return; }
+  if (pass.length < 8)     { showFieldError("signup-pass",  "Password must be at least 8 characters."); return; }
+  if (!terms)              { alert("Please agree to the Terms of Service and Privacy Policy to continue."); return; }
+
+  showSuccess(first);
+}
+
+// ── HELPERS ───────────────────────────────────────────
+function isValidEmail(email) {
+  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+}
+function isValidPhone(phone) {
+  const digits = phone.replace(/\D/g, "");
+  return digits.length >= 10;
+}
+function showFieldError(id, msg) {
+  const el = document.getElementById(id);
+  el.style.borderColor = "#E8303A";
+  el.style.boxShadow   = "0 0 0 3px rgba(232,48,58,0.15)";
+  el.focus();
+  el.placeholder = msg;
+  setTimeout(() => {
+    el.style.borderColor = "";
+    el.style.boxShadow   = "";
+    el.placeholder       = el.getAttribute("placeholder") || "";
+  }, 3000);
+}
+function shakeModal() {
+  const modal = document.querySelector(".modal");
+  modal.style.animation = "shake .4s ease";
+  setTimeout(() => modal.style.animation = "", 400);
+}
+
+// ── PHONE FORMATTER ───────────────────────────────────
+function formatPhone(input) {
+  let digits = input.value.replace(/\D/g, "").slice(0, 10);
+  if (digits.length >= 7)
+    input.value = "(" + digits.slice(0,3) + ") " + digits.slice(3,6) + "-" + digits.slice(6);
+  else if (digits.length >= 4)
+    input.value = "(" + digits.slice(0,3) + ") " + digits.slice(3);
+  else if (digits.length > 0)
+    input.value = "(" + digits;
+}
+
+// ── PASSWORD VISIBILITY TOGGLE ────────────────────────
+function togglePassword(id, btn) {
+  const input = document.getElementById(id);
+  if (input.type === "password") { input.type = "text"; btn.textContent = "🙈"; }
+  else                           { input.type = "password"; btn.textContent = "👁"; }
+}
+
+// ── PASSWORD STRENGTH ─────────────────────────────────
+function checkPassword(input) {
+  const val = input.value;
+  const bar = document.getElementById("strength-bar");
+  const lbl = document.getElementById("strength-label");
+  let score = 0;
+  if (val.length >= 8)                    score++;
+  if (val.length >= 12)                   score++;
+  if (/[A-Z]/.test(val))                  score++;
+  if (/[0-9]/.test(val))                  score++;
+  if (/[^A-Za-z0-9]/.test(val))           score++;
+  const levels = [
+    { label: "",          color: "transparent", w: "0%" },
+    { label: "Weak",      color: "#E8303A",     w: "25%" },
+    { label: "Fair",      color: "#F5C842",     w: "50%" },
+    { label: "Good",      color: "#60a5fa",     w: "75%" },
+    { label: "Strong 💪", color: "#10b981",     w: "100%" },
+  ];
+  const level = levels[Math.min(score, 4)];
+  bar.style.width      = level.w;
+  bar.style.background = level.color;
+  lbl.textContent      = val.length > 0 ? level.label : "";
+  lbl.style.color      = level.color;
+}
+
+// ── KEYBOARD & SHAKE CSS ──────────────────────────────
+document.addEventListener("keydown", e => { if (e.key === "Escape") closeModal(); });
+const shakeStyle = document.createElement("style");
+shakeStyle.textContent = `
+  @keyframes shake {
+    0%,100% { transform: translateX(0); }
+    20%,60% { transform: translateX(-8px); }
+    40%,80% { transform: translateX(8px); }
+  }
+`;
+document.head.appendChild(shakeStyle);
+
+// ── SCROLL REVEAL ─────────────────────────────────────
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add("visible"); });
+}, { threshold: 0.12 });
+document.querySelectorAll(".reveal").forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
